@@ -22,3 +22,17 @@ jobs:
         with:
           node-version: '14'
       - run: npm help
+      
+  check-files:
+    name: Check files
+    runs-on: ubuntu-latest
+    steps:
+      # Creates file "$/files.json", among others
+      - name: Gather files changed
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b
+        with:
+          fileOutput: 'json'
+
+      # For verification
+      - name: Show files changed
+        run: cat $HOME/files.json
